@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import { Container, Grid, Table, TableHead, TableRow, TableCell, TableBody, Button } from '@material-ui/core';
-import axios from 'axios';
 
 import AddPlayerModal from './AddPlayerModal';
+import APIClient from '../APIClient';
 
 export default class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
             team: [],
-            ids: [],
             addOpen: false
         }
     }
@@ -39,11 +38,11 @@ export default class Home extends Component {
                         </TableHead>
                         <TableBody>
                             {this.state.team.map((p) =>
-                                <>
+                                <TableRow>
                                     <TableCell> {p.firstName} {p.lastName}</TableCell>
                                     <TableCell>{p.team}</TableCell>
                                     <TableCell>{p.position}</TableCell>
-                                </>
+                                </TableRow>
                             )}
                         </TableBody>
                     </Table>
@@ -59,19 +58,16 @@ export default class Home extends Component {
     }
 
     loadTeam() {
-        console.log(this.state.ids);
-        for (let i = 0; i < this.state.ids.length; i++) {
-            axios.get(`https://www.balldontlie.io/api/v1/players/${this.state.ids[i]}`).then(response => {
-                let player = response.data;
-                this.state.team.push({ id: player.id, firstName: player.first_name, lastName: player.last_name, team: player.team.full_name, position: player.position });
-                console.log(response);
-            }).catch(() => {
-                console.log("Error Loading Players");
-            });
-        }
+        APIClient.getTeam().then(response => {
+            console.log(response);
+            let t = response;
+            this.setState({ team: t ? t : [] });
+        }).catch(() => {
+            console.log("Error Loading Players");
+        });
     }
 
     addPlayer(player) {
-        this.state.ids.push({ player });
+        // call add player api
     }
 }

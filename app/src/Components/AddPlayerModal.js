@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Modal, Button, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { RadioGroup, Radio, FormControlLabel} from "@material-ui/core";
-import axios from 'axios';
+import APIClient from '../APIClient';
 
 export default class AddPlayerModal extends Component {
     constructor(props) {
@@ -59,7 +59,7 @@ export default class AddPlayerModal extends Component {
     }
 
     search() {
-        axios.get(`https://www.balldontlie.io/api/v1/players/?search=${this.state.name}`).then(response => {
+        APIClient.playerSearch(this.state.name).then(response => {
             console.log(response.data.data);
             this.setState({ results: response.data.data });
         }).catch(() => {
