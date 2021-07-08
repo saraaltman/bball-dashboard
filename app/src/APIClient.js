@@ -25,6 +25,19 @@ export default class APIClient {
             .catch(APIClient.errorHandler);
     }
 
-
+    static addPlayer(id, fn, ln, p, t, hf, hi, wp) {
+        return axios.post(`${API_BASE}/player`, { data: {
+            id: id,
+            firstName: fn,
+            lastName: ln,
+            position: p,
+            team_id: t,
+            height_feet: hf, 
+            height_inches: hi, 
+            weight_pounds: wp
+        }})
+            .then(APIClient.successHandler)
+            .catch(APIClient.errorHandler);
+    }
 
 }

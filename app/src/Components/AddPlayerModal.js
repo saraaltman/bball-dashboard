@@ -8,6 +8,7 @@ export default class AddPlayerModal extends Component {
         super(props);
         this.state = {
             player: {},
+            playerID: {},
             name: "",
             nameFilled: false,
             results: []
@@ -24,14 +25,14 @@ export default class AddPlayerModal extends Component {
                         <RadioGroup name="player" value={this.state.player} onChange={this.handleChange}>
                             {this.state.results.map(p => {
                                 return (
-                                    <FormControlLabel value={p.id} control={<Radio checked={this.state.player == p.id}/>} label={`${p.first_name} ${p.last_name}`}></FormControlLabel>
+                                    <FormControlLabel value={p.id} control={<Radio checked={this.state.playerID == p.id}/>} label={`${p.first_name} ${p.last_name}`}></FormControlLabel>
                                 );
                             })
                             }
                         </RadioGroup>
                 </ModalBody>
                 <ModalFooter>
-                    <Button variant="primary" onClick={() => this.props.addPlayer(this.state.player)}> Add</Button>
+                    <Button variant="primary" onClick={() => this.addPlayer()}> Add</Button>
                     <Button variant="secondary" disabled={!this.state.nameFilled} onClick={this.props.onClose}>Close</Button>
                 </ModalFooter>
             </Modal>
@@ -40,7 +41,8 @@ export default class AddPlayerModal extends Component {
 
     handleChange = (e) => {
         console.log(e.target.value);
-        this.setState({ player: e.target.value });
+        this.setState({ playerID: e.target.value });
+        this.setState({ player: this.state.results.filter((p) => { return p.id == e.target.value; })[0] });
     }
 
     setName(name) {
@@ -60,11 +62,17 @@ export default class AddPlayerModal extends Component {
 
     search() {
         APIClient.playerSearch(this.state.name).then(response => {
-            console.log(response.data.data);
-            this.setState({ results: response.data.data });
+            this.setState({ results: response.data });
         }).catch(() => {
             console.log("Error Loading Players");
         });
+    }
 
+    addPlayer() {
+        APIClient.addPlayer(this.state.player.id, this.state.player.first_name, this.state.player.last_name, this.state.player.position, this.state.player.team.id, this.state.player.height_feet, this.state.player.height_inches, this.state.player.weight_pounds).then(response => {
+            this.props.onClose();
+        }).catch(() => {
+            console.log("Error Adding Player");
+        });
     }
 }

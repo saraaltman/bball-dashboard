@@ -34,14 +34,18 @@ export default class Home extends Component {
                                 <TableCell>Player</TableCell>
                                 <TableCell>Team</TableCell>
                                 <TableCell>Position</TableCell>
+                                <TableCell>Height</TableCell>
+                                <TableCell>Weight</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
                             {this.state.team.map((p) =>
                                 <TableRow>
-                                    <TableCell> {p.firstName} {p.lastName}</TableCell>
+                                    <TableCell>{p.firstName} {p.lastName}</TableCell>
                                     <TableCell>{p.team}</TableCell>
                                     <TableCell>{p.position}</TableCell>
+                                    <TableCell>{p.height_feet}' {p.height_inches}"</TableCell>
+                                    <TableCell>{p.weight_pounds} lbs.</TableCell>
                                 </TableRow>
                             )}
                         </TableBody>
@@ -59,15 +63,12 @@ export default class Home extends Component {
 
     loadTeam() {
         APIClient.getTeam().then(response => {
-            console.log(response);
-            let t = response;
+            console.log(response.team);
+            let t = response.team;
             this.setState({ team: t ? t : [] });
         }).catch(() => {
             console.log("Error Loading Players");
         });
     }
 
-    addPlayer(player) {
-        // call add player api
-    }
 }
