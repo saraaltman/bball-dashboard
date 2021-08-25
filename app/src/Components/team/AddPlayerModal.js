@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Modal, Button, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { RadioGroup, Radio, FormControlLabel} from "@material-ui/core";
-import APIClient from '../APIClient';
+import APIClient from '../../APIClient';
 
 export default class AddPlayerModal extends Component {
     constructor(props) {
@@ -32,15 +32,14 @@ export default class AddPlayerModal extends Component {
                         </RadioGroup>
                 </ModalBody>
                 <ModalFooter>
-                    <Button variant="primary" onClick={() => this.addPlayer()}> Add</Button>
-                    <Button variant="secondary" disabled={!this.state.nameFilled} onClick={this.props.onClose}>Close</Button>
+                    <Button variant="primary" disabled={!this.state.nameFilled} onClick={() => this.addPlayer()}> Add</Button>
+                    <Button variant="secondary" onClick={this.props.onClose}>Close</Button>
                 </ModalFooter>
             </Modal>
         )
     }
 
     handleChange = (e) => {
-        console.log(e.target.value);
         this.setState({ playerID: e.target.value });
         this.setState({ player: this.state.results.filter((p) => { return p.id == e.target.value; })[0] });
     }
