@@ -1,0 +1,14 @@
+.header1 {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+h1 {
+    text-align: center;
+}
+
+.edit {
+    border: 0px;
+    background-color: white;
+}

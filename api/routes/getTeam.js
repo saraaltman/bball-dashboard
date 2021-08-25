@@ -8,7 +8,6 @@ router.get('/', function(req, res, next) {
             if (error) {
                 return console.error(error.message);
             }
-            console.log(results);
             return res.status(200).send({
                 success: 'true',
                 team: results,
