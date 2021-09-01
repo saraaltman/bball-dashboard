@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Button, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
-import { RadioGroup, Radio, FormControlLabel} from "@material-ui/core";
+import { Modal, Button, ModalHeader, ModalBody, ModalFooter, FormGroup, Input, Form, Label } from "reactstrap";
 import APIClient from '../../APIClient';
 
 export default class AddPlayerModal extends Component {
@@ -20,16 +19,25 @@ export default class AddPlayerModal extends Component {
             <Modal isOpen={this.props.isOpen}>
                 <ModalHeader> Add Player </ModalHeader>
                 <ModalBody>
-                    <label htmlFor="name">Name</label><br />
-                    <input style={{ width: '350px' }} type="text" id="name" onChange={(e) => { this.setName(e.target.value) }} required></input>&nbsp;<Button onClick={() => this.search()}>Search</Button><br /><br />
-                        <RadioGroup name="player" value={this.state.player} onChange={this.handleChange}>
+                    <Form>
+                        <FormGroup>
+                            <label htmlFor="name">Name</label><br />
+                            <input style={{ width: '350px' }} type="text" id="name" onChange={(e) => { this.setName(e.target.value) }} required></input>&nbsp;<Button onClick={() => this.search()}>Search</Button><br /><br />
+                        </FormGroup>
+                        <FormGroup name="player" value={this.state.player} onChange={this.handleChange}>
                             {this.state.results.map(p => {
                                 return (
-                                    <FormControlLabel value={p.id} control={<Radio checked={this.state.playerID == p.id}/>} label={`${p.first_name} ${p.last_name}`}></FormControlLabel>
+                                    <div>
+                                        <Label>
+                                            <Input type="radio" value={p.id} checked={this.state.playerID == p.id} />
+                                            {` ${p.first_name} ${p.last_name}`}
+                                        </Label>
+                                    </div>
                                 );
                             })
                             }
-                        </RadioGroup>
+                        </FormGroup>
+                    </Form>
                 </ModalBody>
                 <ModalFooter>
                     <Button variant="primary" disabled={!this.state.nameFilled} onClick={() => this.addPlayer()}> Add</Button>
@@ -72,6 +80,17 @@ export default class AddPlayerModal extends Component {
             this.props.onClose();
         }).catch(() => {
             console.log("Error Adding Player");
+        });
+
+        APIClient.getPlayerStats(this.state.player.id).then(response => {
+            let res = response.data[0];
+            APIClient.addPlayerStats(res.player_id, 0, res.pts, res.reb, res.stl, res.blk, res.turnover, res.min, res.games_played, res.ast, res.fg_pct, res.fg3_pct, res.ft_pct).then(response => {
+                this.props.onClose();
+            }).catch(() => {
+                console.log("Error Adding Player Stats");
+            });
+        }).catch(() => {
+            console.log("Error Loading Player Stats");
         });
     }
 }

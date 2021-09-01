@@ -5,6 +5,7 @@ import './App.css';
 import Home from './Components/Home';
 import WatchList from './Components/watchlist/Watchlist';
 import Analytics from './Components/analytics/Analytics';
+import Player from './Components/players/Player';
 
 function App() {
   return (
@@ -14,6 +15,8 @@ function App() {
           <Route exact path="/home" component={Home} />
           <Route exact path="/watchlist" component={WatchList} />
           <Route exact path="/analytics" component={Analytics} />
+          <Route exact path="/:first-:last" component={Player} />
+
         </Switch>
       </Router>
 

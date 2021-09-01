@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Grid, Table, TableHead, TableRow, TableCell, TableBody, Button, Checkbox } from '@material-ui/core';
+import { Table, Container, Row, Button, Input } from 'reactstrap';
 
 import AddPlayerModal from './team/AddPlayerModal';
 import APIClient from '../APIClient';
@@ -26,50 +26,58 @@ export default class Home extends Component {
 
     render() {
         return (
-            <Container>
-                <Grid>
+            <Container className="main">
+                <Row>
                     <Navigation></Navigation>
-                </Grid>
-                <Grid>
-                    <br/>
-                    <div class="header1">
-                        <h1> {`${this.state.teamName} Dashboard`} </h1>&nbsp;&nbsp;<Button onClick={() => this.openEditTeamName()} class="edit"><i className="fa fa-lg fa-edit"></i></Button>
+                </Row>
+                <br />
+                <br />
+                <Container className="content">
+                    <br />
+                    <div className="header1">
+                        <h1> {`${this.state.teamName} Dashboard`}</h1>&nbsp;&nbsp;
+                        <Button onClick={() => this.openEditTeamName()} className="headerButtons"><i className="fa fa-lg fa-edit"></i></Button>&nbsp;
+                        <Button onClick={() => this.openAdd()} className="headerButtons"><i className="fa fa-lg fa-user-plus"></i></Button>&nbsp;
+                        <Button className="headerButtons"><i className="fa fa-lg fa-trash"></i></Button>
                         <EditTeamNameModal isOpen={this.state.openEditTeamName} onClose={this.closeEditTeamName} name={this.state.teamName}></EditTeamNameModal>
+                        <AddPlayerModal isOpen={this.state.addOpen} onClose={this.closeAdd} addPlayer={() => this.addPlayer()}></AddPlayerModal>
                     </div>
-
-                </Grid>
-                <Grid>
-                    <Button variant="contained" onClick={() => this.openAdd()}>Add a Player</Button>&nbsp;&nbsp;<Button variant="contained">Remove Players</Button>
-                    <AddPlayerModal isOpen={this.state.addOpen} onClose={this.closeAdd} addPlayer={() => this.addPlayer()}></AddPlayerModal>
-                </Grid>
-                <Grid>
-                    <br/>
                     <Table>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell></TableCell>
-                                <TableCell>Player</TableCell>
-                                <TableCell>Team</TableCell>
-                                <TableCell>Position</TableCell>
-                                <TableCell>Height</TableCell>
-                                <TableCell>Weight</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
+                        <thead>
+                            <tr className="headerRow">
+                                <th></th>
+                                <th>PLAYER</th>
+                                <th>TEAM</th>
+                                <th>POSITION</th>
+                                <th>FPPG</th>
+                                <th>PPG</th>
+                                <th>REB</th>
+                                <th>STL</th>
+                                <th>BLOCKS</th>
+                                <th>TO</th>
+                                <th>MINUTES</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                             {this.state.team.map((p) =>
-                                <TableRow>
-                                    <TableCell><Checkbox></Checkbox></TableCell>
-                                    <TableCell>{p.firstName} {p.lastName}</TableCell>
-                                    <TableCell>{TEAM_MAP[p.team_id]}</TableCell>
-                                    <TableCell>{p.position}</TableCell>
-                                    <TableCell>{p.height_feet}' {p.height_inches}"</TableCell>
-                                    <TableCell>{p.weight_pounds} lbs.</TableCell>
-                                </TableRow>
+                                <tr className="bodyRow">
+                                    <th><Input type="checkbox"/></th>
+                                    <th><a href={`/${p.firstName}-${p.lastName}`}>{p.firstName} {p.lastName}</a></th>
+                                    <th>{TEAM_MAP[p.team_id]}</th>
+                                    <th>{p.position}</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
                             )}
-                        </TableBody>
+                        </tbody>
                     </Table>
-                </Grid>
-            </Container >
+                </Container>
+            </Container>
         )
     }
 
@@ -79,9 +87,9 @@ export default class Home extends Component {
         this.loadTeam();
     }
 
-    openEditTeamName = () => this.setState({ openEditTeamName: true});
+    openEditTeamName = () => this.setState({ openEditTeamName: true });
     closeEditTeamName = (name) => {
-        this.setState({openEditTeamName: false, teamName: name });
+        this.setState({ openEditTeamName: false, teamName: name });
     }
 
     loadTeam() {

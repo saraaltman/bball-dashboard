@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Navigation from '../Navigation';
-import { Container } from '@material-ui/core';
+import { Container } from 'reactstrap';
 
 export default class Analytics extends Component {
     render(){
