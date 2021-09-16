@@ -3,8 +3,8 @@ var express = require('express');
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/:id', function(req, res, next) {
-  let getStatsSQL = `SELECT * FROM player_stats WHERE id = ${req.params.id}`;
+router.get('/', function(req, res, next) {
+  let getStatsSQL = `SELECT * FROM player_stats`;
   db.query(getStatsSQL, (error, results, fields) => {
       if (error) {
           return console.error(error.message);

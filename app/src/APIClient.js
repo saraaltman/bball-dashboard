@@ -66,4 +66,22 @@ export default class APIClient {
             .catch(APIClient.errorHandler);
     }
 
+    static getDBPlayerStats(id) {
+        return axios.get(`${API_BASE}/player/stats/${id}`)
+            .then(APIClient.successHandler)
+            .catch(APIClient.errorHandler);
+    }
+
+    static getTeamStats() {
+        return axios.get(`${API_BASE}/team/stats`)
+            .then(APIClient.successHandler)
+            .catch(APIClient.errorHandler);
+    }
+
+    static getPlayer(id) {
+        return axios.get(`${API_BASE}/player/${id}`)
+            .then(APIClient.successHandler)
+            .catch(APIClient.errorHandler);
+    }
+
 }

@@ -10,7 +10,7 @@ export default class Navigation extends Component {
             <Navbar>
                 <Nav fixed='top'>
                     <NavItem>
-                        <NavLink style={{color: "black"}} href="/home">My Team</NavLink>
+                        <NavLink style={{color: "black"}} href="/">My Team</NavLink>
                     </NavItem>
                     <NavItem>
                         <NavLink style={{color: "black"}} href="/watchlist"> Watch List</NavLink>

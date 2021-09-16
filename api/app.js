@@ -8,6 +8,9 @@ var cors = require('cors');
 var getTeamAPIRouter = require("./routes/getTeam");
 var addPlayerAPIRouter = require("./routes/addPlayer");
 var addPlayerStatsAPIRouter = require("./routes/addPlayerStats");
+var getPlayerStatsAPIRouter = require("./routes/getPlayerStats");
+var getTeamStatsAPIRouter = require("./routes/getTeamStats");
+var getPlayerAPIRouter = require("./routes/getPlayer");
 
 var app = express();
 
@@ -23,8 +26,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use("/player", addPlayerAPIRouter);
+app.use("/player", getPlayerAPIRouter);
 app.use("/team", getTeamAPIRouter);
 app.use("/player/stats", addPlayerStatsAPIRouter);
+app.use("/player/stats", getPlayerStatsAPIRouter);
+app.use("/team/stats", getTeamStatsAPIRouter);
 
 
 // catch 404 and forward to error handler
