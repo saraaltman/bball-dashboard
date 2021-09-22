@@ -5,9 +5,9 @@ import AddPlayerModal from './team/AddPlayerModal';
 import APIClient from '../APIClient';
 import Navigation from './Navigation';
 import EditTeamNameModal from './team/EditTeamNameModal';
-import TEAM_MAP from '../models/TeamMap';
 
 import './Home.css';
+import PlayerTable from './shared/PlayerTable/PlayerTable';
 
 export default class Home extends Component {
     constructor(props) {
@@ -47,40 +47,7 @@ export default class Home extends Component {
                         <AddPlayerModal isOpen={this.state.addOpen} onClose={this.closeAdd} addPlayer={() => this.addPlayer()}></AddPlayerModal>
                     </div>
                     {this.state.loaded1 && this.state.loaded2 && this.state.team.length !== 0 &&
-                        <Table>
-                            <thead>
-                                <tr className="headerRow">
-                                    <th></th>
-                                    <th>PLAYER</th>
-                                    <th>TEAM</th>
-                                    <th>POSITION</th>
-                                    <th>FPPG</th>
-                                    <th>PPG</th>
-                                    <th>REB</th>
-                                    <th>STL</th>
-                                    <th>BLOCKS</th>
-                                    <th>TO</th>
-                                    <th>MINUTES</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {this.state.team.map((p, s) =>
-                                    <tr className="bodyRow" key={p.id}>
-                                        <th><Input type="checkbox" /></th>
-                                        <th><a href={`/${p.id}`}>{p.firstName} {p.lastName}</a></th>
-                                        <th>{TEAM_MAP[p.team_id]}</th>
-                                        <th>{p.position}</th>
-                                        <th>{this.state.teamStats[s].fantasy_points_per_game}</th>
-                                        <th>{this.state.teamStats[s].points_per_game}</th>
-                                        <th>{this.state.teamStats[s].rebounds}</th>
-                                        <th>{this.state.teamStats[s].steals}</th>
-                                        <th>{this.state.teamStats[s].blocks}</th>
-                                        <th>{this.state.teamStats[s].turnovers}</th>
-                                        <th>{Math.round(this.state.teamStats[s].avg_minutes_game)}</th>
-                                    </tr>
-                                )}
-                            </tbody>
-                        </Table>}
+                        <PlayerTable team={this.state.team} teamStats={this.state.teamStats}></PlayerTable>}
                     {this.state.loaded1 && this.state.loaded2 && this.state.team.length === 0 &&
                         <h4>
                             Add Players to your team to see their stats displayed here
