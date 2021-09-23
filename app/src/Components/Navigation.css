@@ -2,3 +2,15 @@ Nav {
     font-size: 16pt;
     background-color:#FFFFFF;
 }
+
+.navbar {
+    color: var(--burnt-orange);
+}
+
+.navBall {
+    font-size: 35px;
+    margin-top: 5px;
+    margin-left: 20px;
+    margin-right: 40px;
+}
+

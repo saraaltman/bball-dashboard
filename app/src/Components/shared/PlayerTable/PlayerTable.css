@@ -2,29 +2,40 @@
     width: 100%;
     font-family: 'Source Sans Pro';
     font-size: 16px;
+    border: 0px solid transparent;
 }
 
 .header {
-    height: 35px;
+    height: 50px;
     background-color: var(--smoke);
     color: var(--black);
 }
 
+th {
+    text-align: left;
+    border: 0 
+}
+
 .bodyRow {
-    height: 35px;
+    height: 50px;
 }
 
-tr:hover{
-    background-color: var(--medium-blue);
-    color: var(--white);
-}
-
-tr:nth-child(even) {
+.bodyRow:nth-child(odd) {
     background-color: var(--light-smoke);
     color: var(--black);
 }
 
-tr:nth-child(odd) {
+.bodyRow:nth-child(even) {
     background-color: var(--white);
     color: var(--black);
+}
+
+.bodyRow:hover {
+    background-color: var(--medium-blue);
+    color: var(--white);
+}
+
+td {
+    text-align: left;
+    border: 0 
 }

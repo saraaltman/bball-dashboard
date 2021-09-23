@@ -1,4 +1,55 @@
+:root {
+  /* Neutrals */
+  --black: #000000;
+  --light-gray: #dbdbdb;
+  --medium-gray: #6b6b6b;
+  --white: #ffffff;
+  /* Primary */
+  --medium-blue: #6da9cb;
+  --burnt-orange: #9b5400;
+  --smoke: #adc0c9;
+  --light-smoke: #e5eff3;
+  /* secondary */
+  --light-blue: #d2efff;
+  --orange: #c36a00;
+  --dark-smoke: #859fab;
+  /* UI */
+  --red: #e42929;
+  --green: #007a57;
+}
+
 .App {
   text-align: center;
   height: 100%;
+  width: 100%;
+}
+
+h1 {
+  font-family: "Arvo";
+  font-size: 45px;
+}
+
+h2 {
+  font-family: "Arvo";
+  font-size: 40px;
+}
+
+h3 {
+  font-family: "Arvo";
+  font-size: 35px;
+}
+
+h4 {
+  font-family: "Arvo";
+  font-size: 30px;
+}
+
+h5 {
+  font-family: "Arvo";
+  font-size: 25px;
+}
+
+h6 {
+  font-family: "Arvo";
+  font-size: 20px;
 }

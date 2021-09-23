@@ -1,5 +1,4 @@
 .main {
-    max-width: 100%;
     height: 1000px;
     overflow: scroll;
     background-color: #D2EFFF;
@@ -8,6 +7,9 @@
 .content {
     background-color: #FFFFFF;
     border-radius: 10px;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 10px 60px;
 }
 
 .header1 {
@@ -18,7 +20,6 @@
 
 .headerTitle {
     text-align: left;
-    margin-left: 35px;
 }
 
 .headerButtons {

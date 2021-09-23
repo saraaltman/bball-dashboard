@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 
 import TEAM_MAP from '../../../models/TeamMap';
 
@@ -17,8 +18,8 @@ export default class PlayerTable extends Component {
     render() {
         return (
             <table className="table">
-                <thead className="header">
-                    <tr>
+                <thead>
+                    <tr className="header">
                         <th></th>
                         <th>Name</th>
                         <th>Team</th>
@@ -34,7 +35,7 @@ export default class PlayerTable extends Component {
                 </thead>
                 <tbody>
                     {this.state.team.map((p, s) =>
-                        <tr onClick="onClick(p.id)" className="bodyRow" key={p.id}>
+                        <tr className="bodyRow" key={p.id}>
                             <td></td>
                             <td><a href={`/${p.id}`}>{p.firstName} {p.lastName}</a></td>
                             <td>{TEAM_MAP[p.team_id]}</td>

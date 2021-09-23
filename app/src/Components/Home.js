@@ -36,7 +36,7 @@ export default class Home extends Component {
                 </Row>
                 <br />
                 <br />
-                <Container className="content">
+                <div className="content">
                     <br />
                     <div className="header1">
                         <h1 className="headerTitle"> {`${this.state.teamName} Dashboard`}</h1>&nbsp;&nbsp;
@@ -52,7 +52,7 @@ export default class Home extends Component {
                         <h4>
                             Add Players to your team to see their stats displayed here
                         </h4>}
-                </Container>
+                </div>
             </Container>
         )
     }
