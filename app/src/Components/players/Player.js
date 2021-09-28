@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Navigation from '../Navigation';
+import Navigation from '../shared/Navigation/Navigation';
 import { Container } from 'reactstrap';
 
 import APIClient from '../../APIClient';
@@ -30,9 +30,10 @@ export default class Player extends Component {
                 <br />
                 <br />
                 {this.state.loaded1 && this.state.loaded2 && <Container className="content">
-                    <h1>{this.state.player.firstName} {this.state.player.lastName}</h1>
-                    <h3>Team</h3>
-                    <body> {TEAM_MAP[this.state.player.team_id]}</body>
+                    <div className="playerHeader">
+                        <h1>{this.state.player.firstName} {this.state.player.lastName}</h1>
+                        <h5>My Team</h5>
+                    </div>
                 </Container>}
 
             </Container>

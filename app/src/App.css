@@ -18,6 +18,11 @@
   --green: #007a57;
 }
 
+@font-face {
+  font-family: 'Rockwell';
+  src: local('Rockwell'), url('./fonts/ROCK.TTF') format('tff');
+}
+
 .App {
   text-align: center;
   height: 100%;
@@ -25,31 +30,31 @@
 }
 
 h1 {
-  font-family: "Arvo";
+  font-family: Rockwell;
   font-size: 45px;
 }
 
 h2 {
-  font-family: "Arvo";
+  font-family: Rockwell;
   font-size: 40px;
 }
 
 h3 {
-  font-family: "Arvo";
+  font-family: Rockwell;
   font-size: 35px;
 }
 
 h4 {
-  font-family: "Arvo";
+  font-family: Rockwell;
   font-size: 30px;
 }
 
 h5 {
-  font-family: "Arvo";
+  font-family: Rockwell;
   font-size: 25px;
 }
 
 h6 {
-  font-family: "Arvo";
+  font-family: Rockwell;
   font-size: 20px;
 }

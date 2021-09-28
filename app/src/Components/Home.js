@@ -3,7 +3,7 @@ import { Table, Container, Row, Button, Input } from 'reactstrap';
 
 import AddPlayerModal from './team/AddPlayerModal';
 import APIClient from '../APIClient';
-import Navigation from './Navigation';
+import Navigation from './shared/Navigation/Navigation';
 import EditTeamNameModal from './team/EditTeamNameModal';
 
 import './Home.css';

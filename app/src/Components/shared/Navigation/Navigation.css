@@ -3,13 +3,15 @@ Nav {
     background-color:#FFFFFF;
 }
 
-.navbar {
+.navLabel {
     color: var(--burnt-orange);
+    margin-top: 10px;
 }
 
 .navBall {
+    color: var(--burnt-orange);
     font-size: 35px;
-    margin-top: 5px;
+    margin-top: 12px;
     margin-left: 20px;
     margin-right: 40px;
 }

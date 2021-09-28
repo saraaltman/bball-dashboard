@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Navigation from '../Navigation';
+import Navigation from '../shared/Navigation/Navigation';
 import { Container } from 'reactstrap';
 
 import './Analytics.css'

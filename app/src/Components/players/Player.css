@@ -8,4 +8,11 @@
 .content {
     background-color: #FFFFFF;
     border-radius: 10px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.playerHeader {
+    text-align: left;
+    margin-top: 20px;
 }
