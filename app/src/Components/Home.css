@@ -22,14 +22,14 @@
     text-align: left;
 }
 
-.headerButtons {
-    border: 0px;
-    background-color: #FFFFFF;
-    color: black;
-}
-
 h4 {
     text-align: center;
     margin-top: 20px;
     padding-bottom: 20px;
+}
+
+.headerButtonWrapper {
+    width: 45px;
+    height: 40px;
+    display: inline-flex;
 }

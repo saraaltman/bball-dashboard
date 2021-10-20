@@ -1,0 +1,26 @@
+.addPlayer {
+    color: var(--burnt-orange);
+}
+
+.inputWrapper {
+    width: 85%;
+    float: left;
+}
+
+.buttonWrapper {
+    width: 45px;
+    text-align: center;
+    float: right;
+    margin-top: 32px
+}
+
+.addfooterButton {
+    width: 65px;
+    float: left;
+    margin-left: 70px;
+}
+
+.closefooterButton {
+    width: 75px;
+    float: right;
+}

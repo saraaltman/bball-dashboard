@@ -1,0 +1,16 @@
+.textLabel{
+    font-family: 'Source Sans Pro';
+    font-weight:600;
+    font-size: 16pt;
+}
+
+.textInput {
+    font-family: 'Source Sans Pro';
+    font-weight:400;
+    color: var(--dark-smoke);
+    font-size: 16pt;
+    border: 1px solid var(--burnt-orange);
+    border-radius: 5px;
+    height: 45px;
+    width: 100%;
+}

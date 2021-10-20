@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import { Modal, Button, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import Input from '../shared/Input/Input'
+import BballButton from '../shared/button/BballButton';
+
+import './EditTeamNameModal.css';
 
 
 export default class EditTeamNameModal extends Component {
@@ -14,14 +18,18 @@ export default class EditTeamNameModal extends Component {
     render() {
         return (
             <Modal isOpen={this.props.isOpen}>
-                <ModalHeader> Edit Team Name </ModalHeader>
+                <ModalHeader className="editHeader"> Edit Team Name </ModalHeader>
                 <ModalBody>
-                    <label htmlFor="name">Name</label><br />
-                    <input style={{ width: '350px' }} value={this.state.name} type="text" id="name" onChange={(e) => { this.setName(e.target.value) }} required></input>
+                    <div className="teamNameInput">
+                        <Input label="Team Name" value={this.state.name} disabled={false} onChange={(e) => { this.setName(e.target.value) }}></Input>&nbsp;
+                            </div>
                 </ModalBody>
                 <ModalFooter>
-                    <Button variant="primary" onClick={() => this.props.onClose(this.state.name)}> Done </Button>
+                    <div className="doneButton">
+                        <BballButton onClick={() => this.props.onClose(this.state.name)} label="Done" buttonType="primary"></BballButton>
+                    </div>
                 </ModalFooter>
+
             </Modal>
         )
     }

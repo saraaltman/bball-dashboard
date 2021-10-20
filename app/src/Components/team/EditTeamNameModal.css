@@ -1,0 +1,11 @@
+.doneButton {
+    width: 75px;
+}
+
+.editHeader{
+    color: var(--burnt-orange);
+}
+
+.teamNameInput {
+    width: 85%;
+}

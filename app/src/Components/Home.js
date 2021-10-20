@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { Table, Container, Row, Button, Input } from 'reactstrap';
+import { Table, Container, Row} from 'reactstrap';
 
 import AddPlayerModal from './team/AddPlayerModal';
 import APIClient from '../APIClient';
 import Navigation from './shared/Navigation/Navigation';
 import EditTeamNameModal from './team/EditTeamNameModal';
+import BballButton from './shared/button/BballButton';
 
 import './Home.css';
 import PlayerTable from './shared/PlayerTable/PlayerTable';
@@ -39,10 +40,12 @@ export default class Home extends Component {
                 <div className="content">
                     <br />
                     <div className="header1">
-                        <h1 className="headerTitle"> {`${this.state.teamName} Dashboard`}</h1>&nbsp;&nbsp;
-                        <Button onClick={() => this.openEditTeamName()} className="headerButtons"><i className="fa fa-lg fa-edit"></i></Button>&nbsp;
-                        <Button onClick={() => this.openAdd()} className="headerButtons"><i className="fa fa-lg fa-user-plus"></i></Button>&nbsp;
-                        <Button className="headerButtons"><i className="fa fa-lg fa-trash"></i></Button>
+                        <h1 className="headerTitle"> {`${this.state.teamName} Dashboard`}</h1>&nbsp;&nbsp;&nbsp;
+                        <div className="headerButtonWrapper">
+                            <BballButton onClick={() => this.openEditTeamName()} content="edit" buttonType="primary"></BballButton>&nbsp;&nbsp;
+                            <BballButton onClick={() => this.openAdd()} content="add" buttonType="primary"></BballButton>&nbsp;&nbsp;
+                            <BballButton content="delete" buttonType="primary"></BballButton>
+                        </div>
                         <EditTeamNameModal isOpen={this.state.openEditTeamName} onClose={this.closeEditTeamName} name={this.state.teamName}></EditTeamNameModal>
                         <AddPlayerModal isOpen={this.state.addOpen} onClose={this.closeAdd} addPlayer={() => this.addPlayer()}></AddPlayerModal>
                     </div>

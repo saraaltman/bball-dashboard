@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
-import { Modal, Button, ModalHeader, ModalBody, ModalFooter, FormGroup, Input, Form, Label } from "reactstrap";
+import { Modal, Button, ModalHeader, ModalBody, ModalFooter, FormGroup, Form, Label } from "reactstrap";
+import Input from '../shared/Input/Input'
+import BballButton from '../shared/button/BballButton';
+import RadioButton from '../shared/radio-button/RadioButton'
+
 import APIClient from '../../APIClient';
+
+import './AddPlayerModal.css';
 
 export default class AddPlayerModal extends Component {
     constructor(props) {
@@ -17,20 +23,24 @@ export default class AddPlayerModal extends Component {
     render() {
         return (
             <Modal isOpen={this.props.isOpen}>
-                <ModalHeader> Add Player </ModalHeader>
+                <ModalHeader className="addPlayer"> Add Player </ModalHeader>
                 <ModalBody>
                     <Form>
                         <FormGroup>
-                            <label htmlFor="name">Name</label><br />
-                            <input style={{ width: '350px' }} type="text" id="name" onChange={(e) => { this.setName(e.target.value) }} required></input>&nbsp;<Button onClick={() => this.search()}>Search</Button><br /><br />
+                            <div className="inputWrapper">
+                                <Input label="Player Name" disabled={false} onChange={(e) => { this.setName(e.target.value) }}></Input>&nbsp;
+                            </div>
+                            <div className="buttonWrapper">
+                                <BballButton onClick={() => this.search()} content="search" buttonType="primary"></BballButton>
+                            </div><br /><br />
+
                         </FormGroup>
                         <FormGroup name="player" value={this.state.player} onChange={this.handleChange}>
                             {this.state.results.map(p => {
                                 return (
                                     <div>
                                         <Label>
-                                            <Input type="radio" value={p.id} checked={this.state.playerID == p.id} />
-                                            {` ${p.first_name} ${p.last_name}`}
+                                            <RadioButton key={p.id} label={` ${p.first_name} ${p.last_name}`} value={p.id} checked={this.state.playerID == p.id}></RadioButton>
                                         </Label>
                                     </div>
                                 );
@@ -40,11 +50,21 @@ export default class AddPlayerModal extends Component {
                     </Form>
                 </ModalBody>
                 <ModalFooter>
-                    <Button variant="primary" disabled={!this.state.nameFilled} onClick={() => this.addPlayer()}> Add</Button>
-                    <Button variant="secondary" onClick={this.props.onClose}>Close</Button>
+                    <div className="addFooterButton">
+                    <BballButton disabled={!this.state.nameFilled} onClick={() => this.addPlayer()} label="Add" buttonType="primary"></BballButton>
+                    </div>
+                    <div className="closeFooterButton">
+                    <BballButton onClick={() => this.handleClose()} label="Close" buttonType="secondary"></BballButton>
+                    </div>
+                    
                 </ModalFooter>
             </Modal>
         )
+    }
+    
+    handleClose() {
+        this.setState({results: []});
+        this.props.onClose();
     }
 
     handleChange = (e) => {
@@ -68,6 +88,7 @@ export default class AddPlayerModal extends Component {
     }
 
     search() {
+        console.log(this.state.name);
         APIClient.playerSearch(this.state.name).then(response => {
             this.setState({ results: response.data });
         }).catch(() => {
